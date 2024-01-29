@@ -35,11 +35,10 @@ void StatusMap::add(gsl::span<const DsChannelId> badchannels, uint32_t mask)
     try {
       ChannelCode cc(id.getSolarId(), id.getElinkId(), id.getChannel());
       mStatus[cc] |= mask;
-    }
-    catch (const std::exception& e) {
+    } catch (const std::exception& e) {
       // Catch exceptions thrown by the ChannelCode constructor
       LOGP(warning, "Error processing channel - SolarId: {} ElinkId: {} Channel: {}. Error: {}. This channel is skipped.",
-                 id.getSolarId(), id.getElinkId(), id.getChannel(), e.what());
+           id.getSolarId(), id.getElinkId(), id.getChannel(), e.what());
     }
   }
 }
